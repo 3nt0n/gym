@@ -10,12 +10,15 @@ extras = {
   'atari': ['atari_py~=0.2.0', 'Pillow', 'opencv-python'],
   'box2d': ['box2d-py~=2.3.5'],
   'classic_control': [],
-  'mujoco': ['mujoco_py>=1.50, <2.0', 'imageio'],
-  'robotics': ['mujoco_py>=1.50, <2.0', 'imageio'],
+  'mujoco': ['mujoco_py>=1.50, <2.1', 'imageio'],
+  'robotics': ['mujoco_py>=1.50, <2.1', 'imageio'],
 }
 
 # Meta dependency groups.
-extras['all'] = [item for group in extras.values() for item in group]
+all_deps = []
+for group_name in extras:
+    all_deps += extras[group_name]
+extras['all'] = all_deps
 
 setup(name='gym',
       version=VERSION,
@@ -29,7 +32,7 @@ setup(name='gym',
       zip_safe=False,
       install_requires=[
           'scipy', 'numpy>=1.10.4', 'six', 'pyglet>=1.2.0,<=1.3.2', 'cloudpickle~=1.2.0',
-          'enum34~=1.1.6;python_version<"3.4"', 'opencv-python'
+          'enum34~=1.1.6;python_version<"3.4"'
       ],
       extras_require=extras,
       package_data={'gym': [

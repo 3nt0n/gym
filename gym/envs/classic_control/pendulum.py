@@ -15,8 +15,6 @@ class PendulumEnv(gym.Env):
         self.max_torque=2.
         self.dt=.05
         self.g = g
-        self.m = 1.
-        self.l = 1.
         self.viewer = None
 
         high = np.array([1., 1., self.max_speed])
@@ -33,8 +31,8 @@ class PendulumEnv(gym.Env):
         th, thdot = self.state # th := theta
 
         g = self.g
-        m = self.m
-        l = self.l
+        m = 1.
+        l = 1.
         dt = self.dt
 
         u = np.clip(u, -self.max_torque, self.max_torque)[0]

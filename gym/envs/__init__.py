@@ -374,6 +374,136 @@ for reward_type in ['sparse', 'dense']:
         max_episode_steps=50,
     )
 
+    #anton
+
+#Testing
+    register(
+        id='FetchSlideball{}-v0'.format(suffix),
+        entry_point='gym.envs.robotics:FetchSlideballEnv',
+        kwargs=kwargs,
+        max_episode_steps=50,
+    )
+
+#FetchSlide with a ball
+    register(
+        id='FetchSlideball{}-v1'.format(suffix),
+        entry_point='gym.envs.robotics:FetchSlideballEnv1',
+        kwargs=kwargs,
+        max_episode_steps=50,
+    )
+
+#longer distance
+    register(
+        id='FetchSlideball{}-v2'.format(suffix),
+        entry_point='gym.envs.robotics:FetchSlideballEnv2',
+        kwargs=kwargs,
+        max_episode_steps=50,
+    )
+
+#v2, but 10% friction
+    register(
+        id='FetchSlideball{}-v3'.format(suffix),
+        entry_point='gym.envs.robotics:FetchSlideballEnv3',
+        kwargs=kwargs,
+        max_episode_steps=50,
+    )
+
+#v2, but 50% friction
+    register(
+        id='FetchSlideball{}-v4'.format(suffix),
+        entry_point='gym.envs.robotics:FetchSlideballEnv4',
+        kwargs=kwargs,
+        max_episode_steps=100,
+    )
+
+#v4, but bigger goal range -> for demonstrating purposes
+    register(
+        id='FetchSlideball{}-v5'.format(suffix),
+        entry_point='gym.envs.robotics:FetchSlideballEnv5',
+        kwargs=kwargs,
+        max_episode_steps=100,
+    )
+
+#v2, but with 25% friction
+    register(
+        id='FetchSlideball{}-v6'.format(suffix),
+        entry_point='gym.envs.robotics:FetchSlideballEnv6',
+        kwargs=kwargs,
+        max_episode_steps=75,
+    )
+
+#v1, but 10x distance. should be impossible, for testing stuff
+    register(
+        id='FetchSlideball{}-v9'.format(suffix),
+        entry_point='gym.envs.robotics:FetchSlideballEnv9',
+        kwargs=kwargs,
+        max_episode_steps=50,
+    )
+
+#just testing if tossing is physically possible
+    register(
+        id='FetchToss{}-v0'.format(suffix),
+        entry_point='gym.envs.robotics:FetchTossEnv0',
+        kwargs=kwargs,
+        max_episode_steps=50,
+    )
+
+
+#FetchPickAndPlace with ball, but goal is in a box in some distance, toss needed
+    register(
+        id='FetchToss{}-v1'.format(suffix),
+        entry_point='gym.envs.robotics:FetchTossEnv1',
+        kwargs=kwargs,
+        max_episode_steps=50,
+    )
+
+#v2, better box, some friction
+    register(
+        id='FetchToss{}-v2'.format(suffix),
+        entry_point='gym.envs.robotics:FetchTossEnv2',
+        kwargs=kwargs,
+        max_episode_steps=50,
+    )
+
+
+
+#like v2, double steps per episode
+   
+    register(
+        id='FetchToss{}-v3'.format(suffix),
+        entry_point='gym.envs.robotics:FetchTossEnv2',
+        kwargs=kwargs,
+        max_episode_steps=100,
+    )
+
+
+#less weight on the Ball
+    register(
+        id='FetchToss{}-v4'.format(suffix),
+        entry_point='gym.envs.robotics:FetchTossEnv3',
+        kwargs=kwargs,
+        max_episode_steps=100,
+    )
+
+
+
+#fetchtoss but with cube
+    register(
+        id='FetchTosscube{}-v1'.format(suffix),
+        entry_point='gym.envs.robotics:FetchTosscubeEnv1',
+        kwargs=kwargs,
+        max_episode_steps=50,
+    )
+
+
+#same as FetchPickAndPlace, but with ball
+    register(
+        id='FetchPickAndPlaceball{}-v1'.format(suffix),
+        entry_point='gym.envs.robotics:FetchPickAndPlaceballEnv1',
+        kwargs=kwargs,
+        max_episode_steps=50,
+    )
+
     # Hand
     register(
         id='HandReach{}-v0'.format(suffix),

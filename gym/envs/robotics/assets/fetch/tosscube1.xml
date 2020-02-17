@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mujoco>
+	<compiler angle="radian" coordinate="local" meshdir="../stls/fetch" texturedir="../textures"></compiler>
+	<option timestep="0.002">
+		<flag warmstart="enable"></flag>
+	</option>
+
+	<include file="shared.xml"></include>
+	
+	<worldbody>
+                <!-- floor x 2-->
+		<geom name="floor0" pos="1.65 0.7 0" size="1.7 1.4 1" type="plane" condim="3" material="floor_mat"></geom>
+		<body name="floor0" pos="1.65 0.7 0">
+			<site name="target0" pos="0 0 0.5" size="0.02 0.02 0.02" rgba="1 0 0 1" type="sphere"></site>
+		</body>
+
+		<include file="robot.xml"></include>
+		
+		<body pos="1.3 0.75 0.2" name="table0">
+			<geom size="0.25 0.35 0.2" type="box" mass="2000" material="table_mat"></geom>
+		</body>
+		
+		<body name="object0" pos="0.025 0.025 0.025">
+			<joint name="object0:joint" type="free" damping="0.01"></joint>
+			<geom size="0.025 0.025 0.025" type="box" condim="3" name="object0" material="block_mat" mass="2"></geom>
+			<site name="object0" pos="0 0 0" size="0.02 0.02 0.02" rgba="1 0 0 1" type="sphere"></site>
+		</body>
+
+                <!-- add box -->
+
+		<body pos="2 0.75 0.2" name="table1">
+			<geom size="0.25 0.35 0.2" type="box" mass="2000" material="table_mat"></geom>
+		</body>
+
+                <body pos="1.8 0.75 0.5" name="box1">
+			<geom size="0.05 0.35 0.1" type="box" mass="2000" material="table_mat"></geom>
+		</body>
+
+                 <body pos="2.2 0.75 0.5" name="box2">
+			<geom size="0.05 0.35 0.1" type="box" mass="2000" material="table_mat"></geom>
+		</body>
+
+		<body pos="2 0.45 0.5" name="box3">
+			<geom size="0.2 0.05 0.1" type="box" mass="2000" material="table_mat"></geom>
+		</body>
+
+		<body pos="2 1.05 0.5" name="box4">
+			<geom size="0.2 0.05 0.1" type="box" mass="2000" material="table_mat"></geom>
+		</body>
+
+
+
+		<light directional="true" ambient="0.2 0.2 0.2" diffuse="0.8 0.8 0.8" specular="0.3 0.3 0.3" castshadow="false" pos="0 0 4" dir="0 0 -1" name="light0"></light>
+	</worldbody>
+
+	<actuator>
+		<position ctrllimited="true" ctrlrange="0 0.2" joint="robot0:l_gripper_finger_joint" kp="30000" name="robot0:l_gripper_finger_joint" user="1"></position>
+		<position ctrllimited="true" ctrlrange="0 0.2" joint="robot0:r_gripper_finger_joint" kp="30000" name="robot0:r_gripper_finger_joint" user="1"></position>
+	</actuator>
+</mujoco>
