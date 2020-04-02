@@ -154,7 +154,7 @@ class FetchTossballEnv2(robot_env.RobotEnv):
 
     def _sample_goal(self):
         if self.has_object:
-        ##anton, change goal to fill in box. deleted the random goal range, target range is already changed to 0 anyway
+        ##anton, changed goal to fill in box. deleted the random goal range, target range is already changed to 0 anyway
             goal = np.multiply (1, [2, 0.75, 0.2]) + self.np_random.uniform(-self.target_range, self.target_range, size=3)
             goal += self.target_offset
             goal[2] = self.height_offset

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mujoco>
-<!-- changed all sized times 10-->
-<!-- Der Durchmesser eines Golfballs liegt bei mindestens 42,672 mm (1,68″), das maximale Gewicht bei 45,926 g (1,62 oz.). Maybe add this later-->
+<!-- changed table/floor size times 10-->
 	<compiler angle="radian" coordinate="local" meshdir="../stls/fetch" texturedir="../textures"></compiler>
 	<option timestep="0.002">
 		<flag warmstart="enable"></flag>

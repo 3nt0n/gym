@@ -22,4 +22,4 @@ class FetchTossEnv0(fetch_tossball_env0.FetchTossballEnv0, utils.EzPickle):
             initial_qpos=initial_qpos, reward_type=reward_type)
         utils.EzPickle.__init__(self)
 
-#changed target range to 0, changed treshold to 2 (almost the whole box)
+#changed object range to 0 to keep ball at same place for test.

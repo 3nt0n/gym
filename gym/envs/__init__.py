@@ -374,7 +374,7 @@ for reward_type in ['sparse', 'dense']:
         max_episode_steps=50,
     )
 
-    #anton
+    #added by anton
 
 #Testing
     register(
@@ -392,7 +392,7 @@ for reward_type in ['sparse', 'dense']:
         max_episode_steps=50,
     )
 
-#longer distance
+#longer distance -> fails
     register(
         id='FetchSlideball{}-v2'.format(suffix),
         entry_point='gym.envs.robotics:FetchSlideballEnv2',
@@ -400,7 +400,7 @@ for reward_type in ['sparse', 'dense']:
         max_episode_steps=50,
     )
 
-#v2, but 10% friction
+#v2, but 10% friction of the ball
     register(
         id='FetchSlideball{}-v3'.format(suffix),
         entry_point='gym.envs.robotics:FetchSlideballEnv3',
@@ -408,7 +408,7 @@ for reward_type in ['sparse', 'dense']:
         max_episode_steps=50,
     )
 
-#v2, but 50% friction
+#v2, but 50% friction of the ball -> fails
     register(
         id='FetchSlideball{}-v4'.format(suffix),
         entry_point='gym.envs.robotics:FetchSlideballEnv4',
@@ -416,7 +416,7 @@ for reward_type in ['sparse', 'dense']:
         max_episode_steps=100,
     )
 
-#v4, but bigger goal range -> for demonstrating purposes
+#v4, but bigger goal range -> for demonstrating purposes (did not use it)
     register(
         id='FetchSlideball{}-v5'.format(suffix),
         entry_point='gym.envs.robotics:FetchSlideballEnv5',
@@ -440,7 +440,7 @@ for reward_type in ['sparse', 'dense']:
         max_episode_steps=50,
     )
 
-#just testing if tossing is physically possible
+#just for testing if tossing is physically possible
     register(
         id='FetchToss{}-v0'.format(suffix),
         entry_point='gym.envs.robotics:FetchTossEnv0',
@@ -448,8 +448,7 @@ for reward_type in ['sparse', 'dense']:
         max_episode_steps=50,
     )
 
-
-#FetchPickAndPlace with ball, but goal is in a box in some distance, toss needed
+#FetchPickAndPlace with ball, but goal is in a box in some distance, toss needed -> fails
     register(
         id='FetchToss{}-v1'.format(suffix),
         entry_point='gym.envs.robotics:FetchTossEnv1',
@@ -457,7 +456,7 @@ for reward_type in ['sparse', 'dense']:
         max_episode_steps=50,
     )
 
-#v2, better box, some friction
+#v2, better box, friction added -> fails
     register(
         id='FetchToss{}-v2'.format(suffix),
         entry_point='gym.envs.robotics:FetchTossEnv2',
@@ -466,8 +465,7 @@ for reward_type in ['sparse', 'dense']:
     )
 
 
-
-#like v2, double steps per episode
+#like v2, double steps per episode -> fails
    
     register(
         id='FetchToss{}-v3'.format(suffix),
@@ -477,7 +475,7 @@ for reward_type in ['sparse', 'dense']:
     )
 
 
-#less weight on the Ball
+#v3, with 1% weight on the ball -> fails
     register(
         id='FetchToss{}-v4'.format(suffix),
         entry_point='gym.envs.robotics:FetchTossEnv3',
@@ -486,8 +484,96 @@ for reward_type in ['sparse', 'dense']:
     )
 
 
+#this includes the PickAndPlace goals. And adds another goal. No friction. Weight is 1%. Tossing is needed to reach the upper table (height: 0.5, lower table is at 0.4). only 50 steps -> it works :D
+    register(
+        id='FetchToss{}-v5'.format(suffix),
+        entry_point='gym.envs.robotics:FetchTossEnv5',
+        kwargs=kwargs,
+        max_episode_steps=50,
+    )
 
-#fetchtoss but with cube
+#same as v5, but with friction (same amount of friction as in FetchSlide)
+    register(
+        id='FetchToss{}-v6'.format(suffix),
+        entry_point='gym.envs.robotics:FetchTossEnv6',
+        kwargs=kwargs,
+        max_episode_steps=50,
+    )
+
+#v6, but with longer upper table and bigger goal range on upper table
+    register(
+        id='FetchToss{}-v7'.format(suffix),
+        entry_point='gym.envs.robotics:FetchTossEnv7',
+        kwargs=kwargs,
+        max_episode_steps=50,
+    )
+
+#v7, but with no friction and 10x more weight 
+    register(
+        id='FetchToss{}-v8'.format(suffix),
+        entry_point='gym.envs.robotics:FetchTossEnv8',
+        kwargs=kwargs,
+        max_episode_steps=50,
+    )
+
+#v7, but with no friction 10x less weight 
+    register(
+        id='FetchToss{}-v9'.format(suffix),
+        entry_point='gym.envs.robotics:FetchTossEnv9',
+        kwargs=kwargs,
+        max_episode_steps=50,
+    )
+
+#v7, but with no friction
+    register(
+        id='FetchToss{}-v10'.format(suffix),
+        entry_point='gym.envs.robotics:FetchTossEnv10',
+        kwargs=kwargs,
+        max_episode_steps=50,
+    )
+
+#v5, but table is 1.0 high -> kinda fails
+    register(
+        id='FetchToss{}-v11'.format(suffix),
+        entry_point='gym.envs.robotics:FetchTossEnv11',
+        kwargs=kwargs,
+        max_episode_steps=50,
+    )
+
+#v5, but table is 0.85 (for FetchPickAndPlace: goal range was from 0.4 to 0.85) high -> kinda fails
+    register(
+        id='FetchToss{}-v12'.format(suffix),
+        entry_point='gym.envs.robotics:FetchTossEnv12',
+        kwargs=kwargs,
+        max_episode_steps=50,
+    )
+
+
+#v5, but table is 0.7 high
+    register(
+        id='FetchToss{}-v13'.format(suffix),
+        entry_point='gym.envs.robotics:FetchTossEnv13',
+        kwargs=kwargs,
+        max_episode_steps=50,
+    )
+
+#v5, but with 10x more weight 
+    register(
+        id='FetchToss{}-v14'.format(suffix),
+        entry_point='gym.envs.robotics:FetchTossEnv14',
+        kwargs=kwargs,
+        max_episode_steps=50,
+    )
+
+#v5, but with 10x less weight 
+    register(
+        id='FetchToss{}-v15'.format(suffix),
+        entry_point='gym.envs.robotics:FetchTossEnv15',
+        kwargs=kwargs,
+        max_episode_steps=50,
+    )
+
+#Fetchtoss-v1 but with cube -> fails
     register(
         id='FetchTosscube{}-v1'.format(suffix),
         entry_point='gym.envs.robotics:FetchTosscubeEnv1',
@@ -503,6 +589,15 @@ for reward_type in ['sparse', 'dense']:
         kwargs=kwargs,
         max_episode_steps=50,
     )
+
+#same as FetchPickAndPlace, but goal is only in the air -> fails
+    register(
+        id='FetchPickAndPlaceAir{}-v1'.format(suffix),
+        entry_point='gym.envs.robotics:FetchPickAndPlaceAirEnv1',
+        kwargs=kwargs,
+        max_episode_steps=50,
+    )
+
 
     # Hand
     register(

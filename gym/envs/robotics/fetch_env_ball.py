@@ -155,7 +155,7 @@ class FetchEnvBall(robot_env.RobotEnv):
 
     def _sample_goal(self):
         if self.has_object:
-##changed the next line from goal = self.initial_gripper_xpos[:3] + self.np_random.uniform(-self.target_range, self.target_range, size=3)
+##anton changed the next line
             goal = [4.25, 0.53, 0.4] + self.np_random.uniform(-self.target_range, self.target_range, size=3)
             goal += self.target_offset
             goal[2] = self.height_offset

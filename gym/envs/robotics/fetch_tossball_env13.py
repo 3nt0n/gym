@@ -8,7 +8,7 @@ def goal_distance(goal_a, goal_b):
     return np.linalg.norm(goal_a - goal_b, axis=-1)
 
 
-class FetchTossballEnv0(robot_env.RobotEnv):
+class FetchTossballEnv13(robot_env.RobotEnv):
     """Superclass for all Fetch environments.
     """
 
@@ -43,7 +43,7 @@ class FetchTossballEnv0(robot_env.RobotEnv):
         self.distance_threshold = distance_threshold
         self.reward_type = reward_type
 
-        super(FetchTossballEnv0, self).__init__(
+        super(FetchTossballEnv13, self).__init__(
             model_path=model_path, n_substeps=n_substeps, n_actions=4,
             initial_qpos=initial_qpos)
 
@@ -143,7 +143,7 @@ class FetchTossballEnv0(robot_env.RobotEnv):
         if self.has_object:
             object_xpos = self.initial_gripper_xpos[:2]
             #while np.linalg.norm(object_xpos - self.initial_gripper_xpos[:2]) < 0.1:
-            #    object_xpos = self.initial_gripper_xpos[:2] + self.np_random.uniform(-self.obj_range, self.obj_range, size=2)
+            object_xpos = self.initial_gripper_xpos[:2] + self.np_random.uniform(-self.obj_range, self.obj_range, size=2)
             object_qpos = self.sim.data.get_joint_qpos('object0:joint')
             assert object_qpos.shape == (7,)
             object_qpos[:2] = object_xpos
@@ -153,15 +153,21 @@ class FetchTossballEnv0(robot_env.RobotEnv):
         return True
 
     def _sample_goal(self):
+#anton, changed goal to be in 25% of the cases on the upper table to have it tossed
         if self.has_object:
-        ##anton, changed goal to fill in box. deleted the random goal range, target range is already changed to 0 anyway
-            goal = np.multiply (1, [2, 0.75, 0.2]) + self.np_random.uniform(-self.target_range, self.target_range, size=3)
-            goal += self.target_offset
-            goal[2] = self.height_offset
-            #if self.target_in_the_air and self.np_random.uniform() < 0.5:
-            #    goal[2] += self.np_random.uniform(0, 0.45)
-        #else:
-        #    goal = self.initial_gripper_xpos[:3] + self.np_random.uniform(-0.15, 0.15, size=3)
+            #25% it is on upper table
+            if self.np_random.uniform() < 0.25:
+                goal = np.multiply (1, [1.8, 0.75, 0.5]) + self.np_random.uniform(-self.target_range, self.target_range, size=3)
+                goal += self.target_offset
+                goal[2] = self.height_offset + 0.3
+            else:
+                goal = self.initial_gripper_xpos[:3] + self.np_random.uniform(-self.target_range, self.target_range, size=3)
+                goal += self.target_offset
+                goal[2] = self.height_offset
+                if self.target_in_the_air and self.np_random.uniform() < 0.5:
+                    goal[2] += self.np_random.uniform(0, 0.45)
+        else:
+            goal = self.initial_gripper_xpos[:3] + self.np_random.uniform(-0.15, 0.15, size=3)
         return goal.copy()
 
     def _is_success(self, achieved_goal, desired_goal):
@@ -188,4 +194,4 @@ class FetchTossballEnv0(robot_env.RobotEnv):
             self.height_offset = self.sim.data.get_site_xpos('object0')[2]
 
     def render(self, mode='human', width=500, height=500):
-        return super(FetchTossballEnv0, self).render(mode, width, height)
+        return super(FetchTossballEnv13, self).render(mode, width, height)
